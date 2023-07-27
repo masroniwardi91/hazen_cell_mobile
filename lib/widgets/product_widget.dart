@@ -72,8 +72,10 @@ class _ProductWidgetState extends State<ProductWidget> {
       child: Column(
         children: [
           GestureDetector(
-            onTap: () =>
-                {Navigator.of(context).push(_createRoute(widget.idProduct))},
+            onTap: () => {
+              Navigator.of(context).push(
+                  _createRoute(ProductDetailPage(idProduct: widget.idProduct)))
+            },
             child: Column(
               children: [
                 ClipRRect(
@@ -230,12 +232,9 @@ class _ProductWidgetState extends State<ProductWidget> {
     );
   }
 
-  Route _createRoute(int idProduct, pageRoot) {
+  Route _createRoute(pageRoot) {
     return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          pageRoot(
-        idProduct: idProduct,
-      ),
+      pageBuilder: (context, animation, secondaryAnimation) => pageRoot(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.0, 1.0);
         const end = Offset.zero;
