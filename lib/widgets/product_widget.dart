@@ -4,7 +4,7 @@ import 'package:hazen_cell_mobile/pages/product_detail_page.dart';
 class ProductWidget extends StatefulWidget {
   final String image;
   final String name;
-  final double cost;
+  final String cost;
   final int stock;
   final int idProduct;
   final Function addGlobalCart;

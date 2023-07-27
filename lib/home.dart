@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hazen_cell_mobile/model/productList.dart';
 import 'package:hazen_cell_mobile/widgets/product_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,7 +10,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List products = ProductList().productList;
   int _cart = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   void _addGlobalCart() {
     setState(() {
       _cart++;
@@ -138,25 +146,22 @@ class _HomePageState extends State<HomePage> {
                 shrinkWrap: true,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
-                children: [
-                  for (int i = 1; i <= 5; i++) ...[
-                    ProductWidget(
-                      idProduct: i,
-                      image:
-                          "assets/images/products/apple-iphone-12-pro-max.jpg",
-                      name: 'adssad',
-                      cost: 234556,
-                      stock: 100,
-                      addGlobalCart: _addGlobalCart,
-                      removeGlobalCart: _removeGlobalCart,
-                      onChang: (value) {
-                        setState(() {
-                          _cart -= value;
-                        });
-                      },
-                    ),
-                  ],
-                ],
+                children: products.map((product) {
+                  return ProductWidget(
+                    idProduct: product["id"],
+                    image: 'assets/images/products/${product['foto']}',
+                    name: product["nama"],
+                    cost: product["harga"],
+                    stock: product["stock"],
+                    addGlobalCart: _addGlobalCart,
+                    removeGlobalCart: _removeGlobalCart,
+                    onChang: (value) {
+                      setState(() {
+                        _cart -= value;
+                      });
+                    },
+                  );
+                }).toList(),
               ),
             ))
           ],
