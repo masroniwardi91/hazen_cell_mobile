@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hazen_cell_mobile/widgets/product_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -8,6 +9,23 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int _cart = 0;
+  void _addGlobalCart() {
+    setState(() {
+      _cart++;
+      print(_cart);
+    });
+  }
+
+  void _removeGlobalCart() {
+    setState(() {
+      if (_cart > 0) {
+        _cart--;
+        print(_cart);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +38,9 @@ class _HomePageState extends State<HomePage> {
             Stack(
               children: [
                 Container(
-                  height: 266 - 70,
+                  height: 210 - 70,
                   margin: const EdgeInsets.only(
-                      top: 50, left: 10, right: 10, bottom: 20),
+                      top: 30, left: 10, right: 10, bottom: 20),
                   decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/images/header.png"),
@@ -35,10 +53,50 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Container(
                         alignment: Alignment.topLeft,
-                        child: Image.asset(
-                          'assets/images/splash_screen.png',
-                          height: 43,
-                          alignment: Alignment.topLeft,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Image.asset(
+                              'assets/images/splash_screen.png',
+                              height: 43,
+                              alignment: Alignment.topLeft,
+                            ),
+                            Stack(children: [
+                              SizedBox(
+                                height: 40,
+                                width: 40,
+                                child: IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.shopping_cart),
+                                  color: Colors.white,
+                                ),
+                              ),
+                              if (_cart > 0) ...[
+                                Positioned(
+                                  top: 2,
+                                  right: 2,
+                                  child: Container(
+                                    width: 14,
+                                    height: 14,
+                                    padding: EdgeInsets.all(0.5),
+                                    decoration: BoxDecoration(
+                                        color: Color(0xFFE45429),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(7))),
+                                    child: Center(
+                                      child: Text(
+                                        _cart > 99 ? '99+' : _cart.toString(),
+                                        style: TextStyle(
+                                            fontSize: 7, color: Colors.white),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ]
+                            ])
+                          ],
                         ),
                       ),
                       Container(
@@ -47,16 +105,17 @@ class _HomePageState extends State<HomePage> {
                           "Belanja di Hazen.Cell pasti aman dan terpercaya. Segera dapatkan sekarang jangan sampai kehabisan karena kami hanya menyediakan stock terbatas.",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              shadows: [
-                                Shadow(
-                                  offset: Offset(0, 3.0),
-                                  blurRadius: 5.0,
-                                  color: Color.fromARGB(172, 0, 0, 0),
-                                )
-                              ]),
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            shadows: [
+                              Shadow(
+                                offset: Offset(0, 3.0),
+                                blurRadius: 5.0,
+                                color: Color.fromARGB(172, 0, 0, 0),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -75,86 +134,25 @@ class _HomePageState extends State<HomePage> {
                       topRight: Radius.circular(20))),
               child: GridView.count(
                 crossAxisCount: 2,
-                childAspectRatio: .40,
+                childAspectRatio: .47,
                 padding: const EdgeInsets.all(10),
                 controller: ScrollController(keepScrollOffset: false),
                 shrinkWrap: true,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
-                children: <Widget>[
-                  Container(
-                    height: 347,
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.grey.withOpacity(.5),
-                              offset: const Offset(3, 2),
-                              blurRadius: 7)
-                        ]),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(0),
-                          child: ClipRRect(
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(15),
-                                topRight: Radius.circular(15),
-                              ),
-                              child: Image.asset(
-                                "assets/images/products/apple-iphone-12-pro-max.jpg",
-                                width: double.infinity,
-                              )),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          height: 45,
-                          child: const Text(
-                            "Iphone 14 Pro dsfsdf sdfsdf sdfsdf sdfsdf sd fsdf sdsdfdsf dfgdf fg gd gdfg g fd gf d",
-                            maxLines: 2,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.symmetric(vertical: 8),
-                          decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color:
-                                          Color.fromARGB(255, 221, 221, 221)))),
-                        ),
-                        const Text(
-                          "Rp. 12.500.000,-",
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(29, 123, 84, 1)),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(left: 8.0),
-                              child: Text("Rp. 565656565"),
-                            ),
-                            const SizedBox(
-                              width: 30,
-                            ),
-                            IconButton(
-                                icon: const Icon(Icons.add_shopping_cart),
-                                onPressed: () {})
-                          ],
-                        ),
-                      ],
+                children: [
+                  for (int i = 1; i <= 5; i++) ...[
+                    ProductWidget(
+                      idProduct: i,
+                      image:
+                          "assets/images/products/apple-iphone-12-pro-max.jpg",
+                      name: 'adssad',
+                      cost: 234556,
+                      stock: 100,
+                      addGlobalCart: _addGlobalCart,
+                      removeGlobalCart: _removeGlobalCart,
                     ),
-                  ),
+                  ],
                 ],
               ),
             ))
