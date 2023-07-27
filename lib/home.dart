@@ -13,7 +13,6 @@ class _HomePageState extends State<HomePage> {
   void _addGlobalCart() {
     setState(() {
       _cart++;
-      print(_cart);
     });
   }
 
@@ -21,7 +20,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       if (_cart > 0) {
         _cart--;
-        print(_cart);
       }
     });
   }
@@ -151,6 +149,11 @@ class _HomePageState extends State<HomePage> {
                       stock: 100,
                       addGlobalCart: _addGlobalCart,
                       removeGlobalCart: _removeGlobalCart,
+                      onChang: (value) {
+                        setState(() {
+                          _cart -= value;
+                        });
+                      },
                     ),
                   ],
                 ],

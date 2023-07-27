@@ -9,6 +9,7 @@ class ProductWidget extends StatefulWidget {
   final int idProduct;
   final Function addGlobalCart;
   final Function removeGlobalCart;
+  final ValueChanged<int> onChang;
 
   const ProductWidget(
       {super.key,
@@ -18,7 +19,8 @@ class ProductWidget extends StatefulWidget {
       required this.cost,
       required this.stock,
       required this.addGlobalCart,
-      required this.removeGlobalCart});
+      required this.removeGlobalCart,
+      required this.onChang});
 
   @override
   State<ProductWidget> createState() => _ProductWidgetState();
@@ -50,6 +52,16 @@ class _ProductWidgetState extends State<ProductWidget> {
         _counter--;
         _stock++;
         widget.removeGlobalCart();
+      }
+    });
+  }
+
+  void _removeAllCart() {
+    setState(() {
+      if (_counter > 0) {
+        widget.onChang(_counter);
+        _stock += _counter;
+        _counter = 0;
       }
     });
   }
@@ -138,6 +150,9 @@ class _ProductWidgetState extends State<ProductWidget> {
                 child: ElevatedButton(
                   onPressed: () {
                     _removeCart();
+                  },
+                  onLongPress: () {
+                    _showAlertDialog();
                   },
                   child: Icon(
                     Icons.remove_shopping_cart,
@@ -248,6 +263,60 @@ class _ProductWidgetState extends State<ProductWidget> {
           position: animation.drive(tween),
           child: child,
         );
+      },
+    );
+  }
+
+  Future<void> _showAlertDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        if (_counter > 0) {
+          return AlertDialog(
+            title: const Text('Hapus Produk'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('Apakah anda yakin ingin menghapus semua produk ini?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('No'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              TextButton(
+                child: const Text('Yes'),
+                onPressed: () {
+                  _removeAllCart();
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        } else {
+          return AlertDialog(
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('Produk ini tidak ada di dalam keranjang?'),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text('ok'),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        }
       },
     );
   }

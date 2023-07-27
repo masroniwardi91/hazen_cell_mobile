@@ -12,12 +12,35 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      // appBar: AppBar(),
       body: Center(
         child: Container(
           child: Text("Id Product ${widget.idProduct}"),
         ),
       ),
+      floatingActionButton: Container(
+        width: 40,
+        height: 40,
+        margin: EdgeInsets.only(top: 10),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.close),
+          style: ElevatedButton.styleFrom(
+            minimumSize: Size.zero,
+            padding: EdgeInsets.all(3),
+            backgroundColor: Colors.transparent,
+            foregroundColor: Color.fromARGB(255, 36, 36, 36),
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            // and this
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 }
