@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hazen_cell_mobile/home.dart';
 import 'package:hazen_cell_mobile/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(const MyApp());
 }
 
@@ -22,8 +28,8 @@ class MyApp extends StatelessWidget {
       // home: const SplashScreen(),
       initialRoute: 'splashscreen',
       routes: {
-        'splashscreen':(context) => SplashScreen(),
-        'home':(context) => HomePage(),
+        'splashscreen': (context) => SplashScreen(),
+        'home': (context) => HomePage(),
       },
     );
   }

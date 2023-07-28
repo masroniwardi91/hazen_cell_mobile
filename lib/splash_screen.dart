@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:hazen_cell_mobile/home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,11 +16,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Timer(
-        const Duration(seconds: 5),
-        () => Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (BuildContext context) => const HomePage())));
-
+    Timer(Duration(seconds: 5), () {
+      Navigator.of(context).pushReplacementNamed("home");
+    });
     var assetsImage = const AssetImage(
         'assets/images/splash_screen.png'); //<- Creates an object that fetches an image.
     var image = Image(

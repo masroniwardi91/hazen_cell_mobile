@@ -141,11 +141,12 @@ class _HomePageState extends State<HomePage> {
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    mainAxisExtent: 400,
                     crossAxisSpacing: 10,
-                    mainAxisSpacing: 10),
+                    mainAxisSpacing: 10,
+                    mainAxisExtent: 420),
                 padding: const EdgeInsets.all(10),
                 shrinkWrap: true,
+                clipBehavior: Clip.antiAlias,
                 itemCount: products.length,
                 itemBuilder: (context, i) {
                   return ProductWidget(

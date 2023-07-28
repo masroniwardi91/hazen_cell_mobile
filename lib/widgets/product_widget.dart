@@ -69,7 +69,6 @@ class _ProductWidgetState extends State<ProductWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 167,
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
           color: Colors.white,
