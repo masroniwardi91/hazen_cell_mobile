@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hazen_cell_mobile/home.dart';
 import 'package:hazen_cell_mobile/splash_screen.dart';
 
 void main() {
@@ -18,7 +19,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF093E61)),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      // home: const SplashScreen(),
+      initialRoute: 'splashscreen',
+      routes: {
+        'splashscreen':(context) => SplashScreen(),
+        'home':(context) => HomePage(),
+      },
     );
   }
 }

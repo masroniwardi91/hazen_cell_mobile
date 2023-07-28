@@ -69,7 +69,6 @@ class _ProductWidgetState extends State<ProductWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 347,
       width: 167,
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -129,114 +128,119 @@ class _ProductWidgetState extends State<ProductWidget> {
           const SizedBox(
             height: 8,
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Stock : ${_stock.toString()}",
-              textAlign: TextAlign.left,
-              style: TextStyle(fontSize: 11),
-            ),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              SizedBox(
-                height: 36,
-                width: 35,
-                child: ElevatedButton(
-                  onPressed: () {
-                    _removeCart();
-                  },
-                  onLongPress: () {
-                    _showAlertDialog();
-                  },
-                  child: Icon(
-                    Icons.remove_shopping_cart,
-                    color: Colors.white,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    backgroundColor: Color(0xFFE45429),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
-                      side: BorderSide(
-                        color: Color(0xFFE45429),
-                      ),
-                    ),
-                    // and this
-                  ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Stock : ${_stock.toString()}",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 11),
                 ),
               ),
               const SizedBox(
-                width: 2,
+                height: 5,
               ),
-              Container(
-                padding: EdgeInsets.all(0),
-                height: 36,
-                child: Stack(
-                  children: [
-                    SizedBox(
-                      height: 36,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          _addCart();
-                        },
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.add_shopping_cart,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              "Masuk Keranjang",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: Size.zero,
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 0),
-                          backgroundColor: Color(0xFFE45429),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                            side: BorderSide(
-                              color: Color(0xFFE45429),
-                            ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    height: 36,
+                    width: 35,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        _removeCart();
+                      },
+                      onLongPress: () {
+                        _showAlertDialog();
+                      },
+                      child: Icon(
+                        Icons.remove_shopping_cart,
+                        color: Colors.white,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        backgroundColor: Color(0xFFE45429),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          side: BorderSide(
+                            color: Color(0xFFE45429),
                           ),
-                          // and this
                         ),
+                        // and this
                       ),
                     ),
-                    if (_counter > 0) ...[
-                      Positioned(
-                        top: 1,
-                        right: 1,
-                        child: Container(
-                          width: 13,
-                          height: 13,
-                          decoration: BoxDecoration(
-                              color: Color(0xFFF48B6B),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(7))),
-                          child: Center(
-                            child: Text(
-                              _counter.toString(),
-                              style:
-                                  TextStyle(fontSize: 9, color: Colors.white),
-                              textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    width: 2,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(0),
+                    height: 36,
+                    child: Stack(
+                      children: [
+                        SizedBox(
+                          height: 36,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              _addCart();
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.add_shopping_cart,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  "Masuk Keranjang",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12),
+                                ),
+                              ],
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: Size.zero,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 0),
+                              backgroundColor: Color(0xFFE45429),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5.0),
+                                side: BorderSide(
+                                  color: Color(0xFFE45429),
+                                ),
+                              ),
+                              // and this
                             ),
                           ),
                         ),
-                      )
-                    ]
-                  ],
-                ),
+                        if (_counter > 0) ...[
+                          Positioned(
+                            top: 1,
+                            right: 1,
+                            child: Container(
+                              width: 13,
+                              height: 13,
+                              decoration: BoxDecoration(
+                                  color: Color(0xFFF48B6B),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(7))),
+                              child: Center(
+                                child: Text(
+                                  _counter.toString(),
+                                  style: TextStyle(
+                                      fontSize: 9, color: Colors.white),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          )
+                        ]
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

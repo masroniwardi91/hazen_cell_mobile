@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
             Stack(
               children: [
                 Container(
-                  height: 210 - 70,
+                  height: 220 - 70,
                   margin: const EdgeInsets.only(
                       top: 30, left: 10, right: 10, bottom: 20),
                   decoration: const BoxDecoration(
@@ -138,21 +138,22 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
-              child: GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: .47,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisExtent: 400,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10),
                 padding: const EdgeInsets.all(10),
-                controller: ScrollController(keepScrollOffset: false),
                 shrinkWrap: true,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                children: products.map((product) {
+                itemCount: products.length,
+                itemBuilder: (context, i) {
                   return ProductWidget(
-                    idProduct: product["id"],
-                    image: 'assets/images/products/${product['foto']}',
-                    name: product["nama"],
-                    cost: product["harga"],
-                    stock: product["stock"],
+                    idProduct: products[i]["id"],
+                    image: 'assets/images/products/${products[i]['foto']}',
+                    name: products[i]["nama"],
+                    cost: products[i]["harga"],
+                    stock: products[i]["stock"],
                     addGlobalCart: _addGlobalCart,
                     removeGlobalCart: _removeGlobalCart,
                     onChang: (value) {
@@ -161,7 +162,7 @@ class _HomePageState extends State<HomePage> {
                       });
                     },
                   );
-                }).toList(),
+                },
               ),
             ))
           ],
