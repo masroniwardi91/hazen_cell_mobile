@@ -19,27 +19,37 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         ),
       ),
       floatingActionButton: Container(
-        width: 40,
-        height: 40,
-        margin: EdgeInsets.only(top: 10),
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Icon(Icons.close),
-          style: ElevatedButton.styleFrom(
-            minimumSize: Size.zero,
-            padding: EdgeInsets.all(3),
-            backgroundColor: Colors.transparent,
-            foregroundColor: Color.fromARGB(255, 36, 36, 36),
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+          width: 40,
+          height: 40,
+          margin: EdgeInsets.only(top: 10),
+          child: CircleAvatar(
+            radius: 20,
+            backgroundColor: Color.fromARGB(64, 27, 27, 27),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.close, color: Colors.white),
             ),
-            // and this
+          )
+          // ElevatedButton(
+          //   onPressed: () {
+          //     Navigator.pop(context);
+          //   },
+          //   child: Icon(Icons.close),
+          //   style: ElevatedButton.styleFrom(
+          //     minimumSize: Size.zero,
+          //     padding: EdgeInsets.all(3),
+          //     backgroundColor: Colors.transparent,
+          //     foregroundColor: Color.fromARGB(255, 36, 36, 36),
+          //     elevation: 0,
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(20),
+          //     ),
+          //     // and this
+          //   ),
+          // ),
           ),
-        ),
-      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }

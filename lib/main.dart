@@ -24,6 +24,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF093E61)),
         useMaterial3: true,
+        primaryColor: const Color(0xFF093E61),
+        scaffoldBackgroundColor: Color.fromARGB(255, 255, 255, 255),
       ),
       // home: const SplashScreen(),
       initialRoute: 'splashscreen',
