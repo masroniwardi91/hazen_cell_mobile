@@ -11,7 +11,7 @@
     </item> -->
 
     <!-- <item android:drawable="@android:color/white" /> -->
-    <item android:duration="300">
+    <item android:duration="1">
         <shape>
             <linear android:color="#093e61"/>
         </shape>

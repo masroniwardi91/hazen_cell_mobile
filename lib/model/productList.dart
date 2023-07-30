@@ -101,21 +101,23 @@ class ProductList {
   Map<int, dynamic> description = {
     1: {
       "spesifikasi": {
-        'Display': '',
-        'Prosessor': '',
-        'RAM': '',
-        'Jaringan': '',
-        'GPU': '',
-        'Memory_External': '',
-        'Memory_Internal': '',
-        'Sim_Card': '',
-        'Kamera': '',
-        'OS': '',
-        'Resolusi': '',
-        'Baterai': '',
-        'Dimensi_Produk': '',
-        'Brand': '',
-        'Kelengkapan_Paket': '',
+        'Display': '6.7 inches (~87.4% screen-to-body ratio)',
+        'Prosessor':
+            'Apple A14 Bionic (5 nm) Hexa-core (2x3.1 GHz Firestorm + 4x1.8 GHz Icestorm)',
+        'RAM': '6GB',
+        'Jaringan': 'GSM/CDMA/HSPA/EVDO/LTE/5G',
+        'GPU': 'Apple GPU (4-core graphics)',
+        'Memory_External': 'No',
+        'Memory_Internal': '128GB',
+        'Sim_Card': 'nano simcard',
+        'Kamera':
+            'Main: 12 MP, f/1.6, 26mm (wide), 1.7µm, dual pixel PDAF, sensor-shift OIS \n Selfie: 12 MP, f/2.2, 23mm (wide), 1/3.6"',
+        'OS': 'iOS 14.1, upgradable to iOS 16.5, planned upgrade to iOS 17',
+        'Resolusi': '1284 x 2778 pixels',
+        'Baterai': 'Li-Ion 3687 mAh, non-removable (14.13 Wh)',
+        'Dimensi_Produk': '160.8 x 78.1 x 7.4 mm',
+        'Brand': 'Apple',
+        'Kelengkapan_Paket': '1 unit device, 1 unit adaptor carger',
       },
       "deskripsi": "loremokpodfksp ksa;ldjasdka';dka;sd",
       "images": [

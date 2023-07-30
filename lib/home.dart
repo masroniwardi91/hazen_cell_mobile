@@ -62,8 +62,8 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Image.asset(
-                          'assets/images/splash_screen.png',
-                          height: 43,
+                          'assets/images/brand.png',
+                          height: 33,
                           alignment: Alignment.topLeft,
                         ),
                         Stack(children: [
@@ -86,8 +86,8 @@ class _HomePageState extends State<HomePage> {
                                 padding: EdgeInsets.all(0.5),
                                 decoration: BoxDecoration(
                                     color: Color(0xFFE45429),
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(7))),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(7))),
                                 child: Center(
                                   child: Text(
                                     _cart > 99 ? '99+' : _cart.toString(),
