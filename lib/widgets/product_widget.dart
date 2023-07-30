@@ -69,10 +69,11 @@ class _ProductWidgetState extends State<ProductWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 380,
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
                 color: Colors.grey.withOpacity(.5),
@@ -82,18 +83,23 @@ class _ProductWidgetState extends State<ProductWidget> {
       child: Column(
         children: [
           GestureDetector(
-            onTap: () =>
-                {Navigator.of(context).push(_createRoute(widget.idProduct))},
+            onTap: () => {
+              Navigator.of(context).push(
+                  _createRoute(widget.idProduct, widget.name, widget.cost))
+            },
             child: Column(
               children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  ),
-                  child: Image.asset(
-                    widget.image,
-                    width: double.infinity,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                    ),
+                    child: Image.asset(
+                      widget.image,
+                      height: 203,
+                    ),
                   ),
                 ),
                 Container(
@@ -248,11 +254,13 @@ class _ProductWidgetState extends State<ProductWidget> {
     );
   }
 
-  Route _createRoute(int idProduct) {
+  Route _createRoute(int idProduct, String nameProduct, String hargaProduct) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) =>
           ProductDetailPage(
         idProduct: idProduct,
+        nameProduct: nameProduct,
+        hargaProduct: hargaProduct,
       ),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(0.0, 1.0);
