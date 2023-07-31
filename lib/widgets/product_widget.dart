@@ -9,6 +9,7 @@ class ProductWidget extends StatefulWidget {
   final int idProduct;
   final Function addGlobalCart;
   final Function removeGlobalCart;
+  final cartProdutList;
   final ValueChanged<int> onChang;
 
   const ProductWidget(
@@ -20,6 +21,7 @@ class ProductWidget extends StatefulWidget {
       required this.stock,
       required this.addGlobalCart,
       required this.removeGlobalCart,
+      required this.cartProdutList,
       required this.onChang});
 
   @override
@@ -29,41 +31,10 @@ class ProductWidget extends StatefulWidget {
 class _ProductWidgetState extends State<ProductWidget> {
   int _counter = 0;
   int _stock = 0;
-
   @override
   void initState() {
     _stock = widget.stock;
     super.initState();
-  }
-
-  void _addCart() {
-    setState(() {
-      if (_stock > 0) {
-        _counter++;
-        _stock--;
-        widget.addGlobalCart();
-      }
-    });
-  }
-
-  void _removeCart() {
-    setState(() {
-      if (_counter > 0) {
-        _counter--;
-        _stock++;
-        widget.removeGlobalCart();
-      }
-    });
-  }
-
-  void _removeAllCart() {
-    setState(() {
-      if (_counter > 0) {
-        widget.onChang(_counter);
-        _stock += _counter;
-        _counter = 0;
-      }
-    });
   }
 
   @override
@@ -156,7 +127,15 @@ class _ProductWidgetState extends State<ProductWidget> {
                     width: 35,
                     child: ElevatedButton(
                       onPressed: () {
-                        _removeCart();
+                        setState(() {
+                          if (_counter > 0) {
+                            _counter--;
+                            _stock++;
+                            widget.removeGlobalCart();
+                            widget.cartProdutList.removeSingleCart =
+                                widget.idProduct;
+                          }
+                        });
                       },
                       onLongPress: () {
                         _showAlertDialog();
@@ -190,7 +169,20 @@ class _ProductWidgetState extends State<ProductWidget> {
                           height: 36,
                           child: ElevatedButton(
                             onPressed: () {
-                              _addCart();
+                              setState(() {
+                                if (_stock > 0) {
+                                  _counter++;
+                                  _stock--;
+                                  widget.addGlobalCart();
+                                  widget.cartProdutList.addCart = {
+                                    widget.idProduct: {
+                                      "name": widget.name,
+                                      "image": widget.image,
+                                      "jumlah": 1
+                                    }
+                                  };
+                                }
+                              });
                             },
                             child: Row(
                               children: [
@@ -303,7 +295,14 @@ class _ProductWidgetState extends State<ProductWidget> {
               TextButton(
                 child: const Text('Yes'),
                 onPressed: () {
-                  _removeAllCart();
+                  setState(() {
+                    if (_counter > 0) {
+                      widget.onChang(_counter);
+                      _stock += _counter;
+                      _counter = 0;
+                      widget.cartProdutList.removeAllCart = widget.idProduct;
+                    }
+                  });
                   Navigator.pop(context);
                 },
               ),

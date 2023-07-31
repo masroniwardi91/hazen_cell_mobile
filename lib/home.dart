@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hazen_cell_mobile/model/productCart.dart';
 import 'package:hazen_cell_mobile/model/productList.dart';
 import 'package:hazen_cell_mobile/widgets/product_widget.dart';
 
@@ -11,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List products = ProductList().productList;
+  CartProduct cartProdutList = CartProduct();
   int _cart = 0;
 
   @override
@@ -71,7 +73,11 @@ class _HomePageState extends State<HomePage> {
                             height: 40,
                             width: 40,
                             child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                // print(cartProdutList.products);
+                                Navigator.pushNamed(context, 'cartpage',
+                                    arguments: cartProdutList.products);
+                              },
                               icon: Icon(Icons.shopping_cart),
                               color: Colors.white,
                             ),
@@ -142,7 +148,6 @@ class _HomePageState extends State<HomePage> {
                       mainAxisExtent: 390),
                   padding: const EdgeInsets.all(10),
                   shrinkWrap: true,
-                  clipBehavior: Clip.antiAlias,
                   itemCount: products.length,
                   itemBuilder: (context, i) {
                     return ProductWidget(
@@ -153,6 +158,7 @@ class _HomePageState extends State<HomePage> {
                       stock: products[i]["stock"],
                       addGlobalCart: _addGlobalCart,
                       removeGlobalCart: _removeGlobalCart,
+                      cartProdutList: cartProdutList,
                       onChang: (value) {
                         setState(() {
                           _cart -= value;

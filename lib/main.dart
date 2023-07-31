@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:hazen_cell_mobile/home.dart';
 import 'package:hazen_cell_mobile/splash_screen.dart';
 
+import 'pages/cart_page.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'splashscreen': (context) => SplashScreen(),
         'home': (context) => HomePage(),
+        'cartpage': (context) => CartPage(),
       },
     );
   }

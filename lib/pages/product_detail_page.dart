@@ -159,7 +159,8 @@ class ProductDetailPage extends StatelessWidget {
                         ], // Menampilkan daftar tab
                       ),
                     ),
-                    SpesificationProductWidget(spesifikasi: spesifikasi, deskripsi: deskripsi),
+                    SpesificationProductWidget(
+                        spesifikasi: spesifikasi, deskripsi: deskripsi),
                   ],
                 ),
               ),
@@ -173,6 +174,9 @@ class ProductDetailPage extends StatelessWidget {
             onPressed: () {},
             style: ElevatedButton.styleFrom(
               backgroundColor: Color(0xFFE45429),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
