@@ -176,6 +176,7 @@ class _ProductWidgetState extends State<ProductWidget> {
                                   widget.addGlobalCart();
                                   widget.cartProdutList.addCart = {
                                     widget.idProduct: {
+                                      "id": widget.idProduct,
                                       "name": widget.name,
                                       "image": widget.image,
                                       "jumlah": 1
