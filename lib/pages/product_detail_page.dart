@@ -138,32 +138,8 @@ class ProductDetailPage extends StatelessWidget {
               color: const Color.fromARGB(255, 233, 233, 233),
             ),
             Expanded(
-              child: DefaultTabController(
-                length: 2,
-                child: Column(
-                  children: [
-                    Container(
-                      color: Color.fromARGB(255, 223, 223, 223),
-                      child: TabBar(
-                        labelColor: Color(0xFF3FC7F2),
-                        indicatorColor: Color(0xFF3FC7F2),
-                        dividerColor: Colors.white,
-                        labelStyle: TextStyle(fontSize: 14),
-                        tabs: [
-                          SizedBox(
-                              height: 30,
-                              child: Center(child: Text('Spesifikasi'))),
-                          SizedBox(
-                              height: 30,
-                              child: Center(child: Text('Deskripsi'))),
-                        ], // Menampilkan daftar tab
-                      ),
-                    ),
-                    SpesificationProductWidget(
-                        spesifikasi: spesifikasi, deskripsi: deskripsi),
-                  ],
-                ),
-              ),
+              child: SpesifikastionTabViewWidget(
+                  spesifikasi: spesifikasi, deskripsi: deskripsi),
             )
           ],
         ),

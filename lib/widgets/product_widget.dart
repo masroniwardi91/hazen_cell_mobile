@@ -178,6 +178,7 @@ class _ProductWidgetState extends State<ProductWidget> {
                                     widget.idProduct: {
                                       "id": widget.idProduct,
                                       "name": widget.name,
+                                      "harga": widget.cost,
                                       "image": widget.image,
                                       "jumlah": 1
                                     }

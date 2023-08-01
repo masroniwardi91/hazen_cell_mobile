@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'product_detail_page.dart';
+
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
@@ -35,119 +37,125 @@ class _CartPageState extends State<CartPage> {
           itemBuilder: (context, index) {
             final data = toListproduct[index];
             checked.add(false);
-            print(data);
             return Column(
               children: [
-                Container(
-                  height: 96,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Checkbox(
-                          value: checked[index],
-                          onChanged: (value) {
-                            setState(() {
-                              checked[index] == false
-                                  ? checked[index] = true
-                                  : checked[index] = false;
-                            });
-                          },
-                        ),
-                      ),
-                      Image.asset(
-                        data["image"],
-                        width: 54,
-                      ),
-                      Expanded(
-                        flex: 4,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 2),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                data["name"],
-                                maxLines: 1,
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    height: 24,
-                                    width: 24,
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      child: Icon(
-                                        Icons.remove,
-                                        size: 15,
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.all(2),
-                                          backgroundColor: Color(0xFFD9D9D9),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(5),
-                                              bottomLeft: Radius.circular(5),
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                  Container(
-                                      height: 24,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                          border: Border(
-                                              top: BorderSide(
-                                                  color: Color(0xFFD9D9D9)),
-                                              bottom: BorderSide(
-                                                  color: Color(0xFFD9D9D9)))),
-                                      child: Center(
-                                        child: Text(
-                                          data["jumlah"].toString(),
-                                          style: TextStyle(),
-                                        ),
-                                      )),
-                                  SizedBox(
-                                    height: 24,
-                                    width: 24,
-                                    child: ElevatedButton(
-                                      onPressed: () {},
-                                      child: Icon(
-                                        Icons.add,
-                                        size: 15,
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.all(2),
-                                          backgroundColor: Color(0xFFD9D9D9),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(5),
-                                              bottomRight: Radius.circular(5),
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        _createRoute(data['id'], data["name"], data["harga"]));
+                  },
+                  child: Container(
+                    height: 96,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: checked[index],
+                            onChanged: (value) {
+                              setState(() {
+                                checked[index] == false
+                                    ? checked[index] = true
+                                    : checked[index] = false;
+                              });
+                            },
                           ),
                         ),
-                      ),
-                      Container(
-                        child: Center(
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.delete,
-                                color: Color.fromARGB(255, 252, 127, 105),
-                              )),
+                        Image.asset(
+                          data["image"],
+                          width: 54,
                         ),
-                      )
-                    ],
+                        Expanded(
+                          flex: 4,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 2),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  data["name"],
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                      height: 24,
+                                      width: 24,
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        child: Icon(
+                                          Icons.remove,
+                                          size: 15,
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                            padding: EdgeInsets.all(2),
+                                            backgroundColor: Color(0xFFD9D9D9),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(5),
+                                                bottomLeft: Radius.circular(5),
+                                              ),
+                                            )),
+                                      ),
+                                    ),
+                                    Container(
+                                        height: 24,
+                                        width: 50,
+                                        decoration: BoxDecoration(
+                                            border: Border(
+                                                top: BorderSide(
+                                                    color: Color(0xFFD9D9D9)),
+                                                bottom: BorderSide(
+                                                    color: Color(0xFFD9D9D9)))),
+                                        child: Center(
+                                          child: Text(
+                                            data["jumlah"].toString(),
+                                            style: TextStyle(),
+                                          ),
+                                        )),
+                                    SizedBox(
+                                      height: 24,
+                                      width: 24,
+                                      child: ElevatedButton(
+                                        onPressed: () {},
+                                        child: Icon(
+                                          Icons.add,
+                                          size: 15,
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                            padding: EdgeInsets.all(2),
+                                            backgroundColor: Color(0xFFD9D9D9),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(5),
+                                                bottomRight: Radius.circular(5),
+                                              ),
+                                            )),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          child: Center(
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.delete,
+                                  color: Color.fromARGB(255, 252, 127, 105),
+                                )),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Divider()
@@ -189,6 +197,30 @@ class _CartPageState extends State<CartPage> {
             )),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
+
+  Route _createRoute(int idProduct, String nameProduct, String hargaProduct) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          ProductDetailPage(
+        idProduct: idProduct,
+        nameProduct: nameProduct,
+        hargaProduct: hargaProduct,
+      ),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
     );
   }
 }
