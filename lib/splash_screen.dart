@@ -6,14 +6,14 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 5), () {
+    Timer(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacementNamed("home");
     });
     var assetsImage = const AssetImage(
         'assets/images/splash_screen.png'); //<- Creates an object that fetches an image.
     var image = Image(
         image: assetsImage,
-        height: 50); //<- Creates a widget that displays an image.
+        height: 40); //<- Creates a widget that displays an image.
 
     return Scaffold(
       body: Container(

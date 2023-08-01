@@ -44,9 +44,11 @@ class ProductDetailPage extends StatelessWidget {
                           padding: EdgeInsets.all(8),
                           child: PageView(
                             children: images
-                                .map((url) => Image.network(
-                                      url,
-                                    ))
+                                .map(
+                                  (url) => Image.network(
+                                    url,
+                                  ),
+                                )
                                 .toList(),
                           ),
                         ),
